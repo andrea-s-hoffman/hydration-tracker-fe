@@ -1,8 +1,4 @@
-interface Report {
-  day: Date;
-  ounces: number;
-  goalMet: boolean;
-}
+import { Report } from "./Report";
 
 export default interface Account {
   _id?: string;

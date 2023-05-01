@@ -4,8 +4,9 @@ import AuthContext from "../../context/AuthContext";
 import { updateAccount } from "../../services/accountInfoApi";
 
 const DailyLogForm = () => {
-  const { account, setAccount } = useContext(AuthContext);
+  const { account, setAccount, currentDay } = useContext(AuthContext);
   const [updateOz, setUpdateOz] = useState(0);
+  let startingValue = 0;
   const [saved, setSaved] = useState(true);
   const goal = account ? account.dailyGoalOz : 100;
   const getPercent = (numberAsString: number): string => {
@@ -52,46 +53,48 @@ const DailyLogForm = () => {
   };
 
   useEffect(() => {
-    const today = new Date();
-    const month = today.getMonth();
-    const date = today.getDate();
-    const year = today.getFullYear();
-    let todaysReport = null;
-    if (account) {
-      todaysReport = account.dailyReports.find(
-        (report) =>
-          new Date(report?.day).getDate() === date &&
-          new Date(report?.day).getMonth() === month &&
-          new Date(report?.day).getFullYear() === year
-      );
-    }
     const todaysProgress: number =
-      todaysReport && account ? todaysReport.ounces : 0;
+      currentDay && account ? currentDay.ounces : 0;
+    startingValue = todaysProgress;
     setUpdateOz(todaysProgress);
   }, [account]);
 
   return (
     <form className="DailyLogForm" onSubmit={submitHandler}>
       <div className="progress">
-        <p className="progress-p">
-          {updateOz}oz of {goal}
-        </p>
+        <div className="progress-p">
+          <p className="oz-done">{updateOz}oz</p>
+          <p className="oz-goal">of {goal}</p>
+        </div>
         <div
           className={`water ${saved ? "saved" : "unsaved"}`}
           style={{ height: getPercent(updateOz) }}
         ></div>
       </div>
-      <button
-        className="add-8oz"
-        type="button"
-        onClick={() => {
-          setSaved(false);
-          setUpdateOz((prev) => prev + 8);
-        }}
-      >
-        add 8oz
-      </button>
-      <button>save!</button>
+      <div className="add-8oz">
+        <button
+          type="button"
+          onClick={() => {
+            setSaved(false);
+            setUpdateOz((prev) => prev + 8);
+          }}
+        >
+          add 8oz
+        </button>
+        {!saved && (
+          <button
+            type="button"
+            className="circle"
+            onClick={() => {
+              setSaved(true);
+              setUpdateOz(currentDay?.ounces || 0);
+            }}
+          >
+            <i className="fa-solid fa-rotate-right"></i>
+          </button>
+        )}
+      </div>
+      {!saved && <button>save!</button>}
     </form>
   );
 };

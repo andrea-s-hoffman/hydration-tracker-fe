@@ -23,13 +23,21 @@
   height: 70px;
   border-radius: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 20px;
   z-index: 3;
   font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.DailyLogForm .progress-p .oz-done {
   font-size: 30px;
+  line-height: 30px;
+  color: blue;
 }
 
 .DailyLogForm .water {
@@ -46,8 +54,22 @@
   background-color: #57878b;
 }
 
-.DailyLogForm button.add-8oz {
+.DailyLogForm .add-8oz {
+  display: flex;
+}
+
+.DailyLogForm .add-8oz button {
   background-color: #f9f6ef;
   border: 2px solid blue;
   color: blue;
+  margin: 10px 5px;
+}
+
+.DailyLogForm .add-8oz button.circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

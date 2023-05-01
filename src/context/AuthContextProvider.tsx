@@ -8,14 +8,32 @@ import {
   updateAccount,
 } from "../services/accountInfoApi";
 import Account from "../models/Account";
+import { Report } from "../models/Report";
 
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [account, setAccount] = useState<Account | null>(null);
+  const [currentDay, setCurrentDay] = useState<Report | null>(null);
 
   const signOuttaHere = () => {
     signOut();
   };
+
+  useEffect(() => {
+    const today = new Date();
+    const month = today.getMonth();
+    const date = today.getDate();
+    const year = today.getFullYear();
+    if (account) {
+      const todaysReport = account.dailyReports.find(
+        (report) =>
+          new Date(report?.day).getDate() === date &&
+          new Date(report?.day).getMonth() === month &&
+          new Date(report?.day).getFullYear() === year
+      );
+      if (todaysReport) setCurrentDay(todaysReport);
+    }
+  }, [account]);
 
   useEffect(() => {
     // useEffect to only register once at start
@@ -61,7 +79,9 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, account, setAccount, signOuttaHere }}>
+    <AuthContext.Provider
+      value={{ user, account, setAccount, signOuttaHere, currentDay }}
+    >
       {children}
     </AuthContext.Provider>
   );

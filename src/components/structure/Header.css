@@ -2,13 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  border-bottom: 2px solid #081917;
+}
+
+.Header h1 {
+  padding: 30px;
+  font-size: 30px;
 }
 
 .Header .account-stuff {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .Header .pic-streak {
@@ -17,21 +22,33 @@
 }
 
 .Header .pic-streak p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  background-color: #081917;
-  color: #f9f6ef;
-  padding: 10px 20px;
-  border-radius: 50px;
+  color: #081917;
+  width: 50px;
+  height: 50px;
+  border-left: 2px solid #081917;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .Header .avatar {
-  width: 60px;
-  height: 60px;
-  border: 2px solid #081917;
-  border-radius: 50%;
-  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+  border-left: 2px solid #081917;
+  box-sizing: border-box;
+}
+
+.Header button {
+  border-radius: 0;
+  margin: 0;
+  height: 50px;
+  width: 100px;
+  padding: 0;
+  border-top: 2px solid #081917;
+  border-left: 2px solid #081917;
+  background-color: unset;
+  color: #081917;
 }
