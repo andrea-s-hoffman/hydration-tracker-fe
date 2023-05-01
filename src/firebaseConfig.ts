@@ -6,12 +6,12 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAmroD-eLkT_xeNP5s7mt4UmSVZyGDZaFs",
-  authDomain: "task-manager-682ce.firebaseapp.com",
-  projectId: "task-manager-682ce",
-  storageBucket: "task-manager-682ce.appspot.com",
-  messagingSenderId: "10748754280",
-  appId: "1:10748754280:web:530f7a46ce45a214747edd",
+  apiKey: "AIzaSyC5ArwESNU4CtmVd_pnhivfNGv0MuES6Do",
+  authDomain: "hydrate-r-dye.firebaseapp.com",
+  projectId: "hydrate-r-dye",
+  storageBucket: "hydrate-r-dye.appspot.com",
+  messagingSenderId: "735070549546",
+  appId: "1:735070549546:web:893bf42f433184bf073553",
 };
 
 const app = initializeApp(firebaseConfig);
