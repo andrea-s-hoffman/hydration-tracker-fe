@@ -1,0 +1,38 @@
+.DailyLogForm .progress {
+  height: 300px;
+  width: 200px;
+  border-radius: 5px;
+  border: 2px solid black;
+  position: relative;
+}
+
+.DailyLogForm .progress-p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  z-index: 3;
+}
+
+.DailyLogForm .water {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.DailyLogForm .water.saved {
+  background-color: rgb(53, 127, 157);
+}
+.DailyLogForm .water.unsaved {
+  background-color: skyblue;
+}
