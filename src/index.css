@@ -9,4 +9,24 @@ ul {
 
 body {
   font-size: 16px;
+  background-color: #f9f6ef;
+  color: #081917;
+  height: 100vh;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #081917;
+  font-weight: 700;
+  border-radius: 40px;
+  color: #f9f6ef;
+  border: none;
+}
+
+input {
+  font-size: 16px;
+  padding: 10px;
+  margin: 0 20px;
 }

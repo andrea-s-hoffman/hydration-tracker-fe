@@ -1,4 +1,37 @@
 .Header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.Header .account-stuff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Header .pic-streak {
+  display: flex;
+  align-items: center;
+}
+
+.Header .pic-streak p {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #081917;
+  color: #f9f6ef;
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Header .avatar {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #081917;
+  border-radius: 50%;
+  margin-left: 10px;
 }

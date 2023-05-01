@@ -8,11 +8,13 @@ const Header = () => {
     <header className="Header">
       <h1>hydrate / dye</h1>
       {account && (
-        <>
-          <img src={account?.avatar} alt="avatar" />
-          <p>welcome, {account?.userName}</p>
+        <div className="account-stuff">
+          <div className="pic-streak">
+            {account.streakCount > 0 && <p>{account.streakCount} 🔥</p>}
+            <img className="avatar" src={account?.avatar} alt="avatar" />
+          </div>
           <button onClick={signOuttaHere}>sign out</button>
-        </>
+        </div>
       )}
     </header>
   );

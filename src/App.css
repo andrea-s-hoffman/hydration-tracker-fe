@@ -1,0 +1,9 @@
+.App {
+  padding: 30px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.App.done {
+  background-color: #dbb74d;
+}

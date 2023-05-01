@@ -44,6 +44,7 @@ const DailyLogForm = () => {
           ounces: updateOz,
           goalMet: updateOz >= account.dailyGoalOz,
         });
+        copyOfAcct.streakCount++;
       }
       updateAccount(copyOfAcct).then((res) => setAccount(res));
     }
@@ -81,6 +82,7 @@ const DailyLogForm = () => {
         ></div>
       </div>
       <button
+        className="add-8oz"
         type="button"
         onClick={() => {
           setSaved(false);
@@ -89,7 +91,7 @@ const DailyLogForm = () => {
       >
         add 8oz
       </button>
-      <button>add dat agua!</button>
+      <button>save!</button>
     </form>
   );
 };

@@ -1,8 +1,15 @@
+.DailyLogForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
 .DailyLogForm .progress {
   height: 300px;
   width: 200px;
   border-radius: 5px;
-  border: 2px solid black;
+  border: 2px solid #081917;
   position: relative;
 }
 
@@ -11,16 +18,18 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  width: 50px;
-  height: 50px;
+  background-color: #f9f6ef;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   z-index: 3;
+  font-weight: 700;
+  font-size: 30px;
 }
 
 .DailyLogForm .water {
@@ -31,8 +40,14 @@
 }
 
 .DailyLogForm .water.saved {
-  background-color: rgb(53, 127, 157);
+  background-color: blue;
 }
 .DailyLogForm .water.unsaved {
-  background-color: skyblue;
+  background-color: #57878b;
+}
+
+.DailyLogForm button.add-8oz {
+  background-color: #f9f6ef;
+  border: 2px solid blue;
+  color: blue;
 }
