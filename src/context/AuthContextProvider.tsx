@@ -33,7 +33,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
             new Date(report?.day).getMonth() === month &&
             new Date(report?.day).getFullYear() === year
         );
-        if (todaysReportLocation)
+        if (todaysReportLocation > -1)
           setCurrentDay(account.dailyReports[todaysReportLocation]);
         setCurrentDayIndex(todaysReportLocation);
       }
