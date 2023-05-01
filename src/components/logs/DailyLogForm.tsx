@@ -4,9 +4,10 @@ import AuthContext from "../../context/AuthContext";
 import { updateAccount } from "../../services/accountInfoApi";
 
 const DailyLogForm = () => {
-  const { account, setAccount, currentDay } = useContext(AuthContext);
+  const { account, setAccount, currentDay, currentDayIndex } = useContext(
+    AuthContext
+  );
   const [updateOz, setUpdateOz] = useState(0);
-  let startingValue = 0;
   const [saved, setSaved] = useState(true);
   const goal = account ? account.dailyGoalOz : 100;
   const getPercent = (numberAsString: number): string => {
@@ -20,28 +21,14 @@ const DailyLogForm = () => {
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
     if (account) {
-      const today = new Date();
-      const month = today.getMonth();
-      const date = today.getDate();
-      const year = today.getFullYear();
-      let todaysReportLocation = -1;
-      if (account) {
-        todaysReportLocation = account.dailyReports.findIndex(
-          (report) =>
-            new Date(report?.day).getDate() === date &&
-            new Date(report?.day).getMonth() === month &&
-            new Date(report?.day).getFullYear() === year
-        );
-      }
       const copyOfAcct = { ...account };
-
-      if (todaysReportLocation > -1) {
-        copyOfAcct.dailyReports[todaysReportLocation].ounces = updateOz;
-        copyOfAcct.dailyReports[todaysReportLocation].goalMet =
+      if (currentDayIndex > -1) {
+        copyOfAcct.dailyReports[currentDayIndex].ounces = updateOz;
+        copyOfAcct.dailyReports[currentDayIndex].goalMet =
           updateOz >= account.dailyGoalOz;
       } else {
         copyOfAcct.dailyReports.push({
-          day: today,
+          day: new Date(),
           ounces: updateOz,
           goalMet: updateOz >= account.dailyGoalOz,
         });
@@ -53,11 +40,8 @@ const DailyLogForm = () => {
   };
 
   useEffect(() => {
-    const todaysProgress: number =
-      currentDay && account ? currentDay.ounces : 0;
-    startingValue = todaysProgress;
-    setUpdateOz(todaysProgress);
-  }, [account]);
+    if (currentDay) setUpdateOz(currentDay.ounces);
+  }, [currentDay]);
 
   return (
     <form className="DailyLogForm" onSubmit={submitHandler}>

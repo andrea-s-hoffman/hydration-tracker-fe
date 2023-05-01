@@ -7,6 +7,7 @@ export interface AuthContextModel {
   user: User | null; // null when not logged in
   account: Account | null;
   currentDay: Report | null;
+  currentDayIndex: number;
   setAccount: (account: Account) => void;
   signOuttaHere: () => void;
 }
@@ -15,6 +16,7 @@ const defaultValue: AuthContextModel = {
   user: null,
   account: null,
   currentDay: null,
+  currentDayIndex: -1,
   setAccount: () => {},
   signOuttaHere: () => {},
 };

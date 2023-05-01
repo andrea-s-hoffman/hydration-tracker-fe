@@ -10,7 +10,7 @@ const Header = () => {
       {account && (
         <div className="account-stuff">
           <div className="pic-streak">
-            {account.streakCount > 0 && <p>{account.streakCount}🔥</p>}
+            <p>{account.streakCount > 0 ? `${account.streakCount}🔥` : "💀"}</p>
             <img className="avatar" src={account?.avatar} alt="avatar" />
           </div>
           <button onClick={signOuttaHere}>sign out</button>
