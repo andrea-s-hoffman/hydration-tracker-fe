@@ -41,39 +41,41 @@ const Profile = () => {
     <section className="Profile">
       {friend ? (
         <>
-          <div className="friend-info">
-            <img src={friend.avatar} alt="avatar" />
-            <div className="descriptions">
-              <h3>{friend.userName}</h3>
-              <p>Daily Goal: {friend.dailyGoalOz}oz</p>
-              <p
-                className={`streak ${
-                  todaysProgress && friend.streakCount > 0 ? `good` : "bad"
-                }`}
-              >
-                {todaysProgress && friend.streakCount > 0
-                  ? `${friend.streakCount}🔥`
-                  : "💀"}
-              </p>
-            </div>
-          </div>
-          <div className="friend-progress">
-            <div className="progress">
-              <div
-                className={`water`}
-                style={{
-                  height: getPercent(todaysProgress, friend.dailyGoalOz),
-                }}
-              ></div>
-              <div className="progress-p">
-                <p className="oz-done">{todaysProgress}oz</p>
-                <p className="oz-goal">of {friend.dailyGoalOz}</p>
+          <div className="friend-section">
+            <div className="friend-info">
+              <img src={friend.avatar} alt="avatar" className="avatar" />
+              <div className="descriptions">
+                <h3>{friend.userName}</h3>
+                <p>Daily Goal: {friend.dailyGoalOz}oz</p>
+                <p
+                  className={`streak ${
+                    todaysProgress && friend.streakCount > 0 ? `good` : "bad"
+                  }`}
+                >
+                  {todaysProgress && friend.streakCount > 0
+                    ? `${friend.streakCount}🔥`
+                    : "💀"}
+                </p>
               </div>
             </div>
-            <Link to={`/`}>
-              <p className="go-home">go back home</p>
-            </Link>
+            <div className="friend-progress">
+              <div className="progress">
+                <div
+                  className={`water`}
+                  style={{
+                    height: getPercent(todaysProgress, friend.dailyGoalOz),
+                  }}
+                ></div>
+                <div className="progress-p">
+                  <p className="oz-done">{todaysProgress}oz</p>
+                  <p className="oz-goal">of {friend.dailyGoalOz}</p>
+                </div>
+              </div>
+            </div>
           </div>
+          <Link to={`/`}>
+            <p className="go-home">go back home</p>
+          </Link>
         </>
       ) : (
         <p>...looking</p>
