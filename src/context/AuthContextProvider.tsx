@@ -26,17 +26,16 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
       const month = today.getMonth();
       const date = today.getDate();
       const year = today.getFullYear();
-      if (account) {
-        const todaysReportLocation = account.dailyReports.findIndex(
-          (report) =>
-            new Date(report?.day).getDate() === date &&
-            new Date(report?.day).getMonth() === month &&
-            new Date(report?.day).getFullYear() === year
-        );
-        if (todaysReportLocation > -1)
-          setCurrentDay(account.dailyReports[todaysReportLocation]);
-        setCurrentDayIndex(todaysReportLocation);
-      }
+
+      const todaysReportLocation = account.dailyReports.findIndex(
+        (report) =>
+          new Date(report?.day).getDate() === date &&
+          new Date(report?.day).getMonth() === month &&
+          new Date(report?.day).getFullYear() === year
+      );
+      if (todaysReportLocation > -1)
+        setCurrentDay(account.dailyReports[todaysReportLocation]);
+      setCurrentDayIndex(todaysReportLocation);
     }
   }, [account]);
 
@@ -71,6 +70,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
               dailyGoalOz: 0,
               streakCount: 0,
               dailyReports: [],
+              friends: [],
             }).then((res) => {
               setAccount(res);
             });

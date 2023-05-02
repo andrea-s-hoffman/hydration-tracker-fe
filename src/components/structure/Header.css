@@ -41,6 +41,11 @@
   box-sizing: border-box;
 }
 
+.Header .avatar > img {
+  width: 100%;
+  height: 100%;
+}
+
 .Header button {
   border-radius: 0;
   margin: 0;

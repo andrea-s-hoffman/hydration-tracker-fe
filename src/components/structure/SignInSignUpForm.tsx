@@ -29,6 +29,7 @@ const SignInSignUpForm = ({ signIn }: Props) => {
         streakCount: 0,
         dailyGoalOz: 0,
         dailyReports: [],
+        friends: [],
       }).then((res) => setAccount(res));
     } else {
       const creds: LogInCreds = { password };

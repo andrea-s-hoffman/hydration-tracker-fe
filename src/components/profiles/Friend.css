@@ -1,0 +1,45 @@
+.Friend {
+  height: 45px;
+  list-style: none;
+  border: 2px solid #081917;
+  display: flex;
+  text-align: center;
+  background-color: #081917;
+  color: #f9f6ef;
+  margin: 0 10px;
+}
+
+.Friend .avatar {
+  width: 45px;
+  height: 45px;
+  border-right: 2px solid #081917;
+}
+
+.Friend .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Friend .streak {
+  height: 23px;
+  width: 30px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.Friend .progress-bar {
+  border: 2px solid #f9f6ef;
+  background-color: #f9f6ef;
+  width: 40%;
+  height: 38%;
+  position: relative;
+}
+
+.Friend .progress {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+}

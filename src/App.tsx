@@ -5,6 +5,14 @@ import Main from "./components/structure/Main";
 import AuthContext from "./context/AuthContext";
 import SignInSignUp from "./components/structure/SignInSignUp";
 import UpdateProfileForm from "./components/profiles/UpdateProfileForm";
+import Footer from "./components/structure/Footer";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Profile from "./components/profiles/Profile";
 
 function App() {
   const { account } = useContext(AuthContext);
@@ -29,16 +37,28 @@ function App() {
   }, [account]);
   return (
     <div className={`App${todaysGoalMet ? " done" : ""}`}>
-      <Header />
-      {account ? (
-        account.initialSetUp ? (
-          <Main />
-        ) : (
-          <UpdateProfileForm />
-        )
-      ) : (
-        <SignInSignUp />
-      )}
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              account ? (
+                account.initialSetUp ? (
+                  <Main />
+                ) : (
+                  <UpdateProfileForm />
+                )
+              ) : (
+                <SignInSignUp />
+              )
+            }
+          />
+          <Route path="/my-profile" element={<UpdateProfileForm />} />
+          <Route path="/profile/:uid" element={<Profile />} />
+        </Routes>
+        {account && <Footer />}
+      </Router>
     </div>
   );
 }

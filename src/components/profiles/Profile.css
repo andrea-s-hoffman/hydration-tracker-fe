@@ -1,0 +1,94 @@
+.Profile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.Profile .friend-info {
+  display: flex;
+  background-color: #081917;
+  padding: 10px;
+  color: #f9f6ef;
+}
+
+.Profile .descriptions {
+  margin-left: 10px;
+}
+
+.Profile .streak {
+  font-size: 20px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.Profile .streak.good {
+  padding-left: 4px;
+  background-color: blue;
+}
+
+.Profile .streak.bad {
+  background-color: #4d787b;
+}
+
+.Profile .friend-progress {
+  margin-top: 30px;
+}
+
+.Profile .progress {
+  height: 300px;
+  width: 200px;
+  border-radius: 5px;
+  border: 2px solid #081917;
+  position: relative;
+}
+
+.Profile .progress-p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f9f6ef;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.Profile .progress-p .oz-done {
+  font-size: 30px;
+  line-height: 30px;
+  color: blue;
+}
+
+.Profile .water {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: blue;
+}
+
+.Profile .go-home {
+  text-align: center;
+  margin-top: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}

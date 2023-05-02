@@ -1,17 +1,26 @@
 import { useContext } from "react";
 import "./Header.css";
 import AuthContext from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { account, signOuttaHere } = useContext(AuthContext);
+  const { account, signOuttaHere, currentDay } = useContext(AuthContext);
   return (
     <header className="Header">
-      <h1>hydrate / dye</h1>
+      <h1>
+        <Link to="/">hydrate / dye</Link>
+      </h1>
       {account && (
         <div className="account-stuff">
           <div className="pic-streak">
-            <p>{account.streakCount > 0 ? `${account.streakCount}🔥` : "💀"}</p>
-            <img className="avatar" src={account?.avatar} alt="avatar" />
+            <p>
+              {currentDay && account.streakCount > 0
+                ? `${account.streakCount}🔥`
+                : "💀"}
+            </p>
+            <Link to={"/my-profile"} className="avatar">
+              <img src={account?.avatar} alt="avatar" />
+            </Link>
           </div>
           <button onClick={signOuttaHere}>sign out</button>
         </div>

@@ -11,6 +11,13 @@ export const lookForAccount = (uid: string): Promise<Account | null> => {
     .catch((err) => console.log(err));
 };
 
+export const getAllAccounts = (): Promise<Account[]> => {
+  return axios
+    .get(`${baseUrl}/accounts/all`)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+};
+
 export const signInWithCreds = (creds: LogInCreds): Promise<Account> => {
   return axios
     .get(`${baseUrl}/accounts/login`, {

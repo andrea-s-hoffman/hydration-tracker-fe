@@ -1,0 +1,59 @@
+.AddFriendForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #081917;
+  color: #f9f6ef;
+  width: 80%;
+  min-height: 30%;
+  box-sizing: border-box;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.AddFriendForm h2 {
+  margin: 20px;
+}
+
+.AddFriendForm ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 40px 20px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.AddFriendForm .close {
+  position: absolute;
+  background-color: #f9f6ef;
+  color: #081917;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  top: 0;
+  right: 0;
+}
+
+.AddFriendForm li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 2px solid blue;
+}
+
+.AddFriendForm li button {
+  padding: 5px 10px;
+  font-size: 14px;
+  margin: 0;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -2,22 +2,15 @@ import { FormEvent, useContext, useEffect, useState } from "react";
 import "./DailyLogForm.css";
 import AuthContext from "../../context/AuthContext";
 import { updateAccount } from "../../services/accountInfoApi";
+import { getPercent } from "../../services/helperFunctions";
 
 const DailyLogForm = () => {
-  const { account, setAccount, currentDay, currentDayIndex } = useContext(
-    AuthContext
-  );
+  const { account, setAccount, currentDay, currentDayIndex } =
+    useContext(AuthContext);
   const [updateOz, setUpdateOz] = useState(0);
   const [saved, setSaved] = useState(true);
   const goal = account ? account.dailyGoalOz : 100;
-  const getPercent = (numberAsString: number): string => {
-    let percent = (numberAsString / +goal) * 100;
-    if (percent >= 100) {
-      return "100%";
-    } else {
-      return percent + "%";
-    }
-  };
+
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
     if (account) {
@@ -46,14 +39,14 @@ const DailyLogForm = () => {
   return (
     <form className="DailyLogForm" onSubmit={submitHandler}>
       <div className="progress">
+        <div
+          className={`water ${saved ? "saved" : "unsaved"}`}
+          style={{ height: getPercent(updateOz, goal) }}
+        ></div>
         <div className="progress-p">
           <p className="oz-done">{updateOz}oz</p>
           <p className="oz-goal">of {goal}</p>
         </div>
-        <div
-          className={`water ${saved ? "saved" : "unsaved"}`}
-          style={{ height: getPercent(updateOz) }}
-        ></div>
       </div>
       <div className="add-8oz">
         <button
