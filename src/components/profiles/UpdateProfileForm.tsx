@@ -3,12 +3,21 @@ import "./UpdateProfileForm.css";
 import AuthContext from "../../context/AuthContext";
 import { getAllAccounts, updateAccount } from "../../services/accountInfoApi";
 import { useNavigate } from "react-router-dom";
+import {
+  getRandomProfilePhoto,
+  profilePhotos,
+} from "../../services/profilePhotos";
+const { generateUsername } = require("friendly-username-generator");
 
 const UpdateProfileForm = () => {
   const navigate = useNavigate();
   const { account, setAccount } = useContext(AuthContext);
-  const [un, setUn] = useState(account?.userName || "");
-  const [goal, setGoal] = useState(account?.dailyGoalOz?.toString() || "");
+  const [un, setUn] = useState(account?.userName || generateUsername());
+  const [goal, setGoal] = useState(account?.dailyGoalOz || "");
+  const [photo, setPhoto] = useState(
+    account?.avatar || getRandomProfilePhoto()
+  );
+
   const [err, setErr] = useState("");
   console.log(account);
 
@@ -25,6 +34,7 @@ const UpdateProfileForm = () => {
             copy.userName = un;
             copy.dailyGoalOz = +goal;
             copy.initialSetUp = true;
+            copy.avatar = photo;
             updateAccount(copy).then((res) => setAccount(res));
             navigate("/");
             setErr("");
@@ -62,6 +72,17 @@ const UpdateProfileForm = () => {
         value={goal}
         onChange={(e) => setGoal(e.target.value)}
       />
+      <label>choose a profile image:</label>
+      <div className="images">
+        {profilePhotos.map((pic) => (
+          <img
+            key={pic}
+            src={pic}
+            className={pic === photo ? "selected" : ""}
+            onClick={() => setPhoto(pic)}
+          />
+        ))}
+      </div>
       <button>Save</button>
       <span className="error">{err}</span>
     </form>

@@ -14,3 +14,18 @@
   color: rgb(219, 35, 14);
   font-style: italic;
 }
+
+.UpdateProfileForm .images {
+  margin: 0 20px;
+  overflow-x: scroll;
+}
+
+.UpdateProfileForm .images img {
+  border: 3px solid #f9f6ef;
+  width: 80px;
+  height: 80px;
+}
+
+.UpdateProfileForm img.selected {
+  border: 3px solid blue;
+}

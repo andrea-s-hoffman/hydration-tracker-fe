@@ -5,6 +5,7 @@ import { addAccount, signInWithCreds } from "../../services/accountInfoApi";
 import { v4 as uuidv4 } from "uuid";
 import AuthContext from "../../context/AuthContext";
 import LogInCreds from "../../models/LogInCreds";
+import { getRandomProfilePhoto } from "../../services/profilePhotos";
 
 interface Props {
   signIn: boolean;
@@ -17,12 +18,14 @@ const SignInSignUpForm = ({ signIn }: Props) => {
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
     if (!signIn) {
+      const newUid = uuidv4();
+      localStorage.setItem("uid", newUid);
       addAccount({
-        uid: uuidv4(),
+        uid: newUid,
         email: emailUsername,
         password,
         initialSetUp: false,
-        avatar: "",
+        avatar: getRandomProfilePhoto(),
         lastCheckIn: null,
         userName: "",
         accountCreated: new Date(),
@@ -52,7 +55,7 @@ const SignInSignUpForm = ({ signIn }: Props) => {
   };
   return (
     <section className="SignInSignUpForm" onSubmit={submitHandler}>
-      {/* <form>
+      <form>
         <label htmlFor="email">email{signIn ? " or username" : ""}:</label>
         <input
           type="text"
@@ -72,10 +75,10 @@ const SignInSignUpForm = ({ signIn }: Props) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button>sign {signIn ? "in" : "up"}</button>
-      </form> */}
-      <button onClick={signInWithGoogle}>
+      </form>
+      {/* <button onClick={signInWithGoogle}>
         sign {signIn ? "in" : "up"} with Google
-      </button>
+      </button> */}
     </section>
   );
 };

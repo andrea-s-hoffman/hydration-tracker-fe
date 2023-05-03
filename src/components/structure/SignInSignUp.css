@@ -1,5 +1,33 @@
 .SignInSignUp {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 50px;
+  align-items: center;
+}
+
+.SignInSignUp .buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SignInSignUp button.sign-up {
+  background-color: #f9f6ef;
+  color: #081917;
+  margin: 0;
+}
+
+.SignInSignUp p {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #081917;
+  width: 50%;
+  text-align: center;
+  font-style: italic;
+}
+
+.SignInSignUp button.google {
+  border: 2px solid blue;
+  background-color: #f9f6ef;
+  color: blue;
 }

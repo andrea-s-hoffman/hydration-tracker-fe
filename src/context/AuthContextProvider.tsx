@@ -9,6 +9,7 @@ import {
 } from "../services/accountInfoApi";
 import Account from "../models/Account";
 import { Report } from "../models/Report";
+import { getRandomProfilePhoto } from "../services/profilePhotos";
 
 function AuthContextProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -48,11 +49,14 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
           if (res) {
             setAccount(() => {
               const lastCheckIn = new Date(res?.lastCheckIn!);
-              const daysSpanned = new Date().getDate() - lastCheckIn.getDate();
+              let yesterday = new Date();
+              yesterday.setDate(yesterday.getDate() - 1);
               const copyOfAcct = { ...res };
-              if (daysSpanned > 1) {
+              if (
+                lastCheckIn &&
+                lastCheckIn.getDate() !== yesterday.getDate()
+              ) {
                 copyOfAcct.streakCount = 0;
-                updateAccount(copyOfAcct).then(() => {});
               }
               return copyOfAcct;
             });
@@ -64,7 +68,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
               email: newUser.email!,
               password: null,
               initialSetUp: false,
-              avatar: newUser.photoURL || "",
+              avatar: newUser.photoURL || getRandomProfilePhoto(),
               accountCreated: new Date(),
               lastCheckIn: null,
               dailyGoalOz: 0,
@@ -77,8 +81,29 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
           }
         });
       } else {
-        setUser(null);
-        setAccount(null);
+        const uid = localStorage.getItem("uid");
+        if (uid) {
+          lookForAccount(uid).then((res) => {
+            if (res) {
+              setAccount(() => {
+                const lastCheckIn = new Date(res?.lastCheckIn!);
+                let yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const copyOfAcct = { ...res };
+                if (
+                  lastCheckIn &&
+                  lastCheckIn.getDate() !== yesterday.getDate()
+                ) {
+                  copyOfAcct.streakCount = 0;
+                }
+                return copyOfAcct;
+              });
+            } else {
+              setUser(null);
+              setAccount(null);
+            }
+          });
+        }
       }
     });
   }, []);
