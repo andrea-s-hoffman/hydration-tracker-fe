@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./SignInSignUp.css";
 import SignInSignUpForm from "./SignInSignUpForm";
 import { signInWithGoogle } from "../../firebaseConfig";
 import gif from "../../assets/fa08fe27fe040b3603ecd3ab0ac7f092.gif";
+import AuthContext from "../../context/AuthContext";
 
 const SignInSignUp = () => {
+  const { pullTrigger } = useContext(AuthContext);
   const [showForm, setShowForm] = useState(false);
   const [signIn, setSignIn] = useState(false);
   const signInHandler = () => {

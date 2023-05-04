@@ -15,6 +15,7 @@ const UpdateProfileForm = () => {
   const [un, setUn] = useState(account?.userName || generateUsername());
   const [goal, setGoal] = useState(account?.dailyGoalOz || "");
   const [photo, setPhoto] = useState(getRandomProfilePhoto());
+  const [selected, setSelected] = useState(false);
 
   const [err, setErr] = useState("");
   console.log(account);
@@ -80,7 +81,7 @@ const UpdateProfileForm = () => {
       <div className="images">
         {profilePhotos
           .sort((a) => {
-            if (a === photo) {
+            if (a === photo && !selected) {
               return -1;
             } else {
               return 1;
@@ -91,7 +92,10 @@ const UpdateProfileForm = () => {
               key={pic}
               src={pic}
               className={pic === photo ? "selected" : ""}
-              onClick={() => setPhoto(pic)}
+              onClick={() => {
+                setSelected(true);
+                setPhoto(pic);
+              }}
             />
           ))}
       </div>

@@ -15,8 +15,10 @@ const SignInSignUpForm = ({ signIn }: Props) => {
   const { setAccount } = useContext(AuthContext);
   const [emailUsername, setEmailUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();
+    localStorage.setItem("sign-out", "false");
     if (!signIn) {
       const newUid = uuidv4();
       localStorage.setItem("uid", newUid);

@@ -2,11 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { User } from "firebase/auth";
 import { auth, signOut } from "../firebaseConfig";
 import AuthContext from "./AuthContext";
-import {
-  addAccount,
-  lookForAccount,
-  updateAccount,
-} from "../services/accountInfoApi";
+import { addAccount, lookForAccount } from "../services/accountInfoApi";
 import Account from "../models/Account";
 import { Report } from "../models/Report";
 import { getRandomProfilePhoto } from "../services/profilePhotos";
@@ -16,10 +12,16 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   const [account, setAccount] = useState<Account | null>(null);
   const [currentDay, setCurrentDay] = useState<Report | null>(null);
   const [currentDayIndex, setCurrentDayIndex] = useState(-1);
+  const [trigger, setTrigger] = useState(false);
+
+  const pullTrigger = () => {
+    setTrigger((prev) => !prev);
+  };
 
   const signOuttaHere = () => {
     signOut();
     setAccount(null);
+    localStorage.setItem("sign-out", "true");
   };
 
   useEffect(() => {
@@ -88,8 +90,9 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
           }
         });
       } else {
+        const signOut = localStorage.getItem("sign-out");
         const uid = localStorage.getItem("uid");
-        if (uid) {
+        if (uid && signOut === "false") {
           lookForAccount(uid).then((res) => {
             if (res) {
               setAccount(() => {
@@ -119,7 +122,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
         }
       }
     });
-  }, []);
+  }, [trigger]);
 
   return (
     <AuthContext.Provider
@@ -130,6 +133,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
         signOuttaHere,
         currentDay,
         currentDayIndex,
+        pullTrigger,
       }}
     >
       {children}
