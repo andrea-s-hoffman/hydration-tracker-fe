@@ -5,8 +5,9 @@ import { updateAccount } from "../../services/accountInfoApi";
 import { getPercent } from "../../services/helperFunctions";
 
 const DailyLogForm = () => {
-  const { account, setAccount, currentDay, currentDayIndex } =
-    useContext(AuthContext);
+  const { account, setAccount, currentDay, currentDayIndex } = useContext(
+    AuthContext
+  );
   const [updateOz, setUpdateOz] = useState(0);
   const [saved, setSaved] = useState(true);
   const goal = account ? account.dailyGoalOz : 100;
@@ -15,6 +16,7 @@ const DailyLogForm = () => {
     e.preventDefault();
     if (account) {
       const copyOfAcct = { ...account };
+      copyOfAcct.lastCheckIn = new Date();
       if (currentDayIndex > -1) {
         copyOfAcct.dailyReports[currentDayIndex].ounces = updateOz;
         copyOfAcct.dailyReports[currentDayIndex].goalMet =

@@ -34,6 +34,10 @@
   box-sizing: border-box;
 }
 
+.Header .pic-streak p.nope {
+  background-color: #273837;
+}
+
 .Header .avatar {
   width: 50px;
   height: 50px;

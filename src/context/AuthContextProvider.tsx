@@ -19,6 +19,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
 
   const signOuttaHere = () => {
     signOut();
+    setAccount(null);
   };
 
   useEffect(() => {
@@ -48,15 +49,21 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
         lookForAccount(newUser.uid).then((res) => {
           if (res) {
             setAccount(() => {
-              const lastCheckIn = new Date(res?.lastCheckIn!);
-              let yesterday = new Date();
-              yesterday.setDate(yesterday.getDate() - 1);
               const copyOfAcct = { ...res };
-              if (
-                lastCheckIn &&
-                lastCheckIn.getDate() !== yesterday.getDate()
-              ) {
-                copyOfAcct.streakCount = 0;
+              if (res.lastCheckIn) {
+                const lastCheckIn = new Date(res.lastCheckIn);
+                const today = new Date();
+                let yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const msSpanned = today.getTime() - lastCheckIn.getTime();
+                if (msSpanned > 172800000) {
+                  copyOfAcct.streakCount = 0;
+                } else if (
+                  lastCheckIn.getDate() !== yesterday.getDate() &&
+                  lastCheckIn.getDate() !== today.getDate()
+                ) {
+                  copyOfAcct.streakCount = 0;
+                }
               }
               return copyOfAcct;
             });
@@ -86,15 +93,21 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
           lookForAccount(uid).then((res) => {
             if (res) {
               setAccount(() => {
-                const lastCheckIn = new Date(res?.lastCheckIn!);
-                let yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
                 const copyOfAcct = { ...res };
-                if (
-                  lastCheckIn &&
-                  lastCheckIn.getDate() !== yesterday.getDate()
-                ) {
-                  copyOfAcct.streakCount = 0;
+                if (res.lastCheckIn) {
+                  const lastCheckIn = new Date(res.lastCheckIn);
+                  const today = new Date();
+                  let yesterday = new Date();
+                  yesterday.setDate(yesterday.getDate() - 1);
+                  const msSpanned = today.getTime() - lastCheckIn.getTime();
+                  if (msSpanned > 172800000) {
+                    copyOfAcct.streakCount = 0;
+                  } else if (
+                    lastCheckIn.getDate() !== yesterday.getDate() &&
+                    lastCheckIn.getDate() !== today.getDate()
+                  ) {
+                    copyOfAcct.streakCount = 0;
+                  }
                 }
                 return copyOfAcct;
               });

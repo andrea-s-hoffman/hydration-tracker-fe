@@ -13,7 +13,7 @@ const Header = () => {
       {account && (
         <div className="account-stuff">
           <div className="pic-streak">
-            <p>
+            <p className={!currentDay ? "nope" : ""}>
               {currentDay && account.streakCount > 0
                 ? `${account.streakCount}🔥`
                 : "💀"}
