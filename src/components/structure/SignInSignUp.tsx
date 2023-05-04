@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./SignInSignUp.css";
 import SignInSignUpForm from "./SignInSignUpForm";
 import { signInWithGoogle } from "../../firebaseConfig";
+import gif from "../../assets/fa08fe27fe040b3603ecd3ab0ac7f092.gif";
 
 const SignInSignUp = () => {
   const [showForm, setShowForm] = useState(false);
@@ -16,6 +17,7 @@ const SignInSignUp = () => {
   };
   return (
     <div className="SignInSignUp">
+      <img src={gif} alt="water" className="bg-gif" />
       {showForm ? (
         <SignInSignUpForm signIn={signIn} />
       ) : (

@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
   const { account, signOuttaHere, currentDay } = useContext(AuthContext);
   return (
-    <header className="Header">
+    <header className={`Header${account ? "" : " no-acct"}`}>
       <h1>
-        <Link to="/">hydrate / dye</Link>
+        <Link to="/">hydrate or dye</Link>
       </h1>
-      {account && (
+      {account ? (
         <div className="account-stuff">
           <div className="pic-streak">
             <p className={!currentDay ? "nope" : ""}>
@@ -24,6 +24,8 @@ const Header = () => {
           </div>
           <button onClick={signOuttaHere}>sign out</button>
         </div>
+      ) : (
+        <h2 className="gun">🔫</h2>
       )}
     </header>
   );
