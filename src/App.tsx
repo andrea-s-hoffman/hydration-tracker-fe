@@ -15,7 +15,7 @@ import {
 import Profile from "./components/profiles/Profile";
 
 function App() {
-  const { account } = useContext(AuthContext);
+  const { account, loading } = useContext(AuthContext);
   const [todaysGoalMet, setTodaysGoalMet] = useState(false);
   useEffect(() => {
     const today = new Date();
@@ -43,7 +43,9 @@ function App() {
           <Route
             path="/"
             element={
-              account ? (
+              loading ? (
+                <p>loading...</p>
+              ) : account ? (
                 account.initialSetUp ? (
                   <Main />
                 ) : (

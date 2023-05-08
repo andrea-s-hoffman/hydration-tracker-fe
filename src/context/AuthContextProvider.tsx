@@ -13,6 +13,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   const [currentDay, setCurrentDay] = useState<Report | null>(null);
   const [currentDayIndex, setCurrentDayIndex] = useState(-1);
   const [trigger, setTrigger] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const pullTrigger = () => {
     setTrigger((prev) => !prev);
@@ -67,6 +68,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
                   copyOfAcct.streakCount = 0;
                 }
               }
+              setLoading(false);
               return copyOfAcct;
             });
           } else {
@@ -112,9 +114,13 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
                     copyOfAcct.streakCount = 0;
                   }
                 }
+                setLoading(false);
+
                 return copyOfAcct;
               });
             } else {
+              setLoading(false);
+
               setUser(null);
               setAccount(null);
             }
@@ -129,10 +135,11 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
       value={{
         user,
         account,
-        setAccount,
-        signOuttaHere,
         currentDay,
         currentDayIndex,
+        loading,
+        setAccount,
+        signOuttaHere,
         pullTrigger,
       }}
     >

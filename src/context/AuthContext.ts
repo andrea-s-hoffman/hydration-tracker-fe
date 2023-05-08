@@ -8,6 +8,7 @@ export interface AuthContextModel {
   account: Account | null;
   currentDay: Report | null;
   currentDayIndex: number;
+  loading: boolean;
   setAccount: (account: Account) => void;
   signOuttaHere: () => void;
   pullTrigger: () => void;
@@ -18,6 +19,7 @@ const defaultValue: AuthContextModel = {
   account: null,
   currentDay: null,
   currentDayIndex: -1,
+  loading: true,
   setAccount: () => {},
   signOuttaHere: () => {},
   pullTrigger: () => {},
