@@ -4,5 +4,6 @@
 }
 
 .App.done {
-  background-color: #73d8be;
+  background-image: url("../src/assets/fa08fe27fe040b3603ecd3ab0ac7f092.gif");
+  background-size: cover;
 }

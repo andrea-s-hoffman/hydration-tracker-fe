@@ -17,7 +17,7 @@ import Profile from "./components/profiles/Profile";
 function App() {
   const { account, loading } = useContext(AuthContext);
   const [todaysGoalMet, setTodaysGoalMet] = useState(false);
-  console.log(loading);
+  // console.log(loading);
 
   useEffect(() => {
     const today = new Date();
@@ -35,6 +35,8 @@ function App() {
     }
     if (todaysReport?.goalMet) {
       setTodaysGoalMet(true);
+    } else {
+      setTodaysGoalMet(false);
     }
   }, [account]);
   return (

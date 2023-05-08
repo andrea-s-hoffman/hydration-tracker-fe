@@ -18,7 +18,7 @@ const UpdateProfileForm = () => {
   const [selected, setSelected] = useState(false);
 
   const [err, setErr] = useState("");
-  console.log(account);
+  // console.log(account);
 
   const submitHandler = (e: FormEvent): void => {
     e.preventDefault();

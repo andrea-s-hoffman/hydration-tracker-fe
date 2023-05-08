@@ -35,7 +35,7 @@ const DailyLogForm = () => {
   };
 
   useEffect(() => {
-    console.log(currentDay);
+    // console.log(currentDay);
 
     if (currentDay && account) {
       setUpdateOz(currentDay.ounces);

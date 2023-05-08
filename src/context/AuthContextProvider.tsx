@@ -25,6 +25,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
     setCurrentDay(null);
     setCurrentDayIndex(-1);
     localStorage.setItem("sign-out", "true");
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -70,9 +71,9 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
                   copyOfAcct.streakCount = 0;
                 }
               }
-              setLoading(false);
               return copyOfAcct;
             });
+            setLoading(false);
           } else {
             addAccount({
               uid: newUser.uid,
@@ -91,6 +92,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
             }).then((res) => {
               setAccount(res);
             });
+            setLoading(false);
           }
         });
       } else {
@@ -116,17 +118,19 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
                     copyOfAcct.streakCount = 0;
                   }
                 }
-                setLoading(false);
-
                 return copyOfAcct;
               });
-            } else {
               setLoading(false);
-
+            } else {
               setUser(null);
               setAccount(null);
+              setLoading(false);
             }
           });
+        } else {
+          setUser(null);
+          setAccount(null);
+          setLoading(false);
         }
       }
     });

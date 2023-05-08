@@ -39,7 +39,9 @@ const Footer = () => {
               ))}
             </ul>
           ) : (
-            <p className="no-friends">No friends yet 😥</p>
+            <p style={{ marginTop: "20px" }} className="no-friends">
+              No friends yet 😥
+            </p>
           )}
           {showForm && <AddFriendForm close={() => setShowForm(false)} />}
         </>
