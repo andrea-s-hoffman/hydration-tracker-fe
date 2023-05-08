@@ -35,8 +35,14 @@ const DailyLogForm = () => {
   };
 
   useEffect(() => {
-    if (currentDay) setUpdateOz(currentDay.ounces);
-  }, [currentDay]);
+    console.log(currentDay);
+
+    if (currentDay && account) {
+      setUpdateOz(currentDay.ounces);
+    } else if (account && !currentDay) {
+      setUpdateOz(0);
+    }
+  }, [currentDay, account]);
 
   return (
     <form className="DailyLogForm" onSubmit={submitHandler}>

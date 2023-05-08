@@ -21,7 +21,7 @@ const SignInSignUp = () => {
     <div className="SignInSignUp">
       <img src={gif} alt="water" className="bg-gif" />
       {showForm ? (
-        <SignInSignUpForm signIn={signIn} />
+        <SignInSignUpForm signIn={signIn} goBack={() => setShowForm(false)} />
       ) : (
         <div className="buttons">
           <button className="sign-in" onClick={signInHandler}>

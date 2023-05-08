@@ -9,9 +9,10 @@ import { getRandomProfilePhoto } from "../../services/profilePhotos";
 
 interface Props {
   signIn: boolean;
+  goBack: () => void;
 }
 
-const SignInSignUpForm = ({ signIn }: Props) => {
+const SignInSignUpForm = ({ signIn, goBack }: Props) => {
   const { setAccount } = useContext(AuthContext);
   const [emailUsername, setEmailUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -77,6 +78,7 @@ const SignInSignUpForm = ({ signIn }: Props) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button>sign {signIn ? "in" : "up"}</button>
+        <p onClick={goBack}>go back</p>
       </form>
       {/* <button onClick={signInWithGoogle}>
         sign {signIn ? "in" : "up"} with Google

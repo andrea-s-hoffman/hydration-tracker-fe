@@ -22,6 +22,8 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   const signOuttaHere = () => {
     signOut();
     setAccount(null);
+    setCurrentDay(null);
+    setCurrentDayIndex(-1);
     localStorage.setItem("sign-out", "true");
   };
 

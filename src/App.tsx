@@ -17,6 +17,8 @@ import Profile from "./components/profiles/Profile";
 function App() {
   const { account, loading } = useContext(AuthContext);
   const [todaysGoalMet, setTodaysGoalMet] = useState(false);
+  console.log(loading);
+
   useEffect(() => {
     const today = new Date();
     const month = today.getMonth();
@@ -44,7 +46,13 @@ function App() {
             path="/"
             element={
               loading ? (
-                <p>loading...</p>
+                <p
+                  style={{
+                    textAlign: "center",
+                  }}
+                >
+                  loading...
+                </p>
               ) : account ? (
                 account.initialSetUp ? (
                   <Main />
