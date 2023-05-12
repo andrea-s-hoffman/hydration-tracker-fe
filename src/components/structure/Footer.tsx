@@ -34,9 +34,11 @@ const Footer = () => {
           </div>
           {friends.length > 0 ? (
             <ul className="friends">
-              {friends.map((friend) => (
-                <Friend key={friend._id} friend={friend} />
-              ))}
+              {friends
+                .sort((a, b) => b.streakCount - a.streakCount)
+                .map((friend) => (
+                  <Friend key={friend._id} friend={friend} />
+                ))}
             </ul>
           ) : (
             <p style={{ marginTop: "20px" }} className="no-friends">
