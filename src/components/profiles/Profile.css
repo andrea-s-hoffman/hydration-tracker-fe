@@ -15,6 +15,9 @@
   color: #f9f6ef;
   padding: 20px;
   border-radius: 5px;
+  width: 275px;
+  box-sizing: border-box;
+  max-width: 80%;
 }
 
 .Profile .friend-info {

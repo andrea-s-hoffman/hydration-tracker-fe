@@ -8,7 +8,16 @@ const Header = () => {
   return (
     <header className={`Header${account ? "" : " no-acct"}`}>
       <h1>
-        <Link to="/">hydrate or dye</Link>
+        <Link to="/">
+          {account ? (
+            <>
+              {" "}
+              <i className="fa-solid fa-house"></i> h/d
+            </>
+          ) : (
+            "hydrate or dye"
+          )}
+        </Link>
       </h1>
       {account ? (
         <div className="account-stuff">

@@ -89,6 +89,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
               streakCount: 0,
               dailyReports: [],
               friends: [],
+              notifications: [],
             }).then((res) => {
               setAccount(res);
             });

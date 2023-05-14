@@ -14,4 +14,5 @@ export default interface Account {
   streakCount: number;
   dailyReports: Report[];
   friends: string[];
+  notifications: Notification[];
 }

@@ -27,6 +27,14 @@ const AddFriendForm = ({ close }: Props) => {
       updateAccount(copyOfAcct).then((res) => setAccount(res));
     }
   };
+  const removeFriend = (uid: string): void => {
+    if (account) {
+      const copyOfAcct = { ...account };
+      const index = copyOfAcct.friends.findIndex((f) => f === uid);
+      copyOfAcct.friends.splice(index, 1);
+      updateAccount(copyOfAcct).then((res) => setAccount(res));
+    }
+  };
 
   useEffect(() => {
     getAllAccounts().then((res) => setAccounts(res));
@@ -46,7 +54,7 @@ const AddFriendForm = ({ close }: Props) => {
                 <li key={profile._id}>
                   <p>{profile.userName}</p>
                   {areTheyAFriend(profile.uid) ? (
-                    <p>✓</p>
+                    <p onClick={() => removeFriend(profile.uid)}>✓</p>
                   ) : (
                     <button onClick={() => addFriend(profile.uid)}>add</button>
                   )}
